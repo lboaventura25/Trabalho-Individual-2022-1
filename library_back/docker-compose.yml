@@ -1,0 +1,17 @@
+version: "3.8"
+
+volumes:
+  service_postgres_data:
+  pip_cache:
+
+services:
+  db:
+    container_name: db
+    image: postgres:latest
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    volumes:
+      - service_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./env-vars/.postgres.env
