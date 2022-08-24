@@ -10,7 +10,7 @@ services:
     restart: on-failure
     build:
       context: .
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./docker/Dockerfile_back
     environment:
       - PYTHONUNBUFFERED=1
       - PYTHONPATH=/code
@@ -26,6 +26,22 @@ services:
       - ./library_back/env-vars/.postgres.env
     depends_on:
       - db
+
+  library-front:
+    container_name: library-front
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile_front
+    networks:
+      - library-network
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./library_front:/library_front
+    depends_on:
+      - db
+      - library-back
 
   db:
     container_name: db
