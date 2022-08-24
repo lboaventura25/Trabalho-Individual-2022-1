@@ -1,0 +1,9 @@
+FROM node:16
+
+RUN mkdir /code
+WORKDIR /code
+COPY ./library_front .
+
+RUN yarn
+
+CMD [ "yarn", "start" ]
