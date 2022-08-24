@@ -20,12 +20,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./src:/src
-      - ./books:/books
-      - ./accounts:/accounts
+      - ./library_back:/library_back
       - pip_cache:/usr/local/lib/python3/site-packages
     env_file:
-      - ./env-vars/.postgres.env
+      - ./library_back/env-vars/.postgres.env
     depends_on:
       - db
 
@@ -38,7 +36,7 @@ services:
     volumes:
       - service_postgres_data:/var/lib/postgresql/data
     env_file:
-      - ./env-vars/.postgres.env
+      - ./library_back/env-vars/.postgres.env
     networks:
       - library-network
 

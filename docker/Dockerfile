@@ -6,7 +6,7 @@ EXPOSE 80
 
 RUN mkdir /code
 WORKDIR /code
-COPY . .
+COPY ./library_back .
 
 RUN ["chmod", "+x", "./start_library_back.sh"]
 
