@@ -5,6 +5,30 @@ volumes:
   pip_cache:
 
 services:
+  library-back:
+    container_name: library-back
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/code
+    command: ["./start_library_back.sh"]
+    networks:
+      - library-network
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/src
+      - ./books:/books
+      - ./accounts:/accounts
+      - pip_cache:/usr/local/lib/python3/site-packages
+    env_file:
+      - ./env-vars/.postgres.env
+    depends_on:
+      - db
+
   db:
     container_name: db
     image: postgres:latest
@@ -15,3 +39,11 @@ services:
       - service_postgres_data:/var/lib/postgresql/data
     env_file:
       - ./env-vars/.postgres.env
+    networks:
+      - library-network
+
+networks:
+  # Bridge used to `library-back` comunicate to `db` postgres
+  library-network:
+    name: library-network
+    driver: bridge
