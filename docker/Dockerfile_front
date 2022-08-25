@@ -1,9 +1,15 @@
-FROM node:16
+FROM node:16 as build-front
 
 RUN mkdir /code
+
 WORKDIR /code
+
 COPY ./library_front .
 
-RUN yarn
+RUN yarn 
 
-CMD [ "yarn", "start" ]
+RUN yarn build
+
+RUN yarn global add serve
+
+CMD ["serve", "-s", "build"]
