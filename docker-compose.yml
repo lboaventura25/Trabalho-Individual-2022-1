@@ -27,7 +27,6 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - PYTHONPATH=/code
-    command: ["./start_library_back.sh"]
     networks:
       - library-network
     ports:
