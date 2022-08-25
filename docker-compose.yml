@@ -5,6 +5,19 @@ volumes:
   pip_cache:
 
 services:
+  db:
+    container_name: db
+    image: postgres:latest
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    volumes:
+      - service_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./library_back/env-vars/.postgres.env
+    networks:
+      - library-network
+
   library-back:
     container_name: library-back
     restart: on-failure
@@ -30,6 +43,7 @@ services:
   library-front:
     container_name: library-front
     restart: on-failure
+    stdin_open: true
     build:
       context: .
       dockerfile: ./docker/Dockerfile_front
@@ -43,18 +57,17 @@ services:
       - db
       - library-back
 
-  db:
-    container_name: db
-    image: postgres:latest
-    restart: on-failure
+  nginx:
+    image: nginx:stable
+    container_name: nginx
     ports:
-      - "5432:5432"
+      - "80:80"
     volumes:
-      - service_postgres_data:/var/lib/postgresql/data
-    env_file:
-      - ./library_back/env-vars/.postgres.env
+      - ./library_front/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - library-network
+    depends_on:
+      - library-front
 
 networks:
   # Bridge used to `library-back` comunicate to `db` postgres
