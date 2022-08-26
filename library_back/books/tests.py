@@ -1,7 +1,6 @@
-from dataclasses import dataclass
 import unittest
-from .models import Book
-from .serializers import BookSerializer
+from library_back.books.models import Book
+from library_back.books.serializers import BookSerializer
 
 
 class BookTests(unittest.TestCase):
@@ -23,7 +22,8 @@ class BookTests(unittest.TestCase):
         self.book.delete()
 
     def test_valid_fields(self):
-        valid_fields = ('id', 'title', 'author', 'release_year', 'is_rented', 'renter')
+        valid_fields = (
+            'id', 'title', 'author', 'release_year', 'is_rented', 'renter')
         invalid_fields = ('random_field', 'foo', 'bar')
         data = self.serializer.data
         self.assertEqual(set(data.keys()), set(valid_fields))
