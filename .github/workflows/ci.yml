@@ -62,4 +62,4 @@ jobs:
         run: |
           cd library_front
           yarn 
-          npx eslint src/** --no-error-on-unmatched-pattern
+          npx eslint src/**/*.js --no-error-on-unmatched-pattern
