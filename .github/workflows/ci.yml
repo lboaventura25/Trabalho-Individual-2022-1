@@ -29,9 +29,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
       # Runs test of front with docker-compose
       - name: Run a detached build and up of project
-        run: docker-compose run library-front yarn test
+        run: docker-compose run library-front yarn ci:test
