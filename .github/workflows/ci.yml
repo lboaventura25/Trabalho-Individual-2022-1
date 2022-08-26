@@ -51,6 +51,19 @@ jobs:
         env:
           CI: true
 
+  lint-back:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Runs lint of back
+      - name: Run a `flake8` on back
+        run: |
+          cd library_back
+          pip3 install -r requirements.txt 
+          flake8
+
   lint-front:
     runs-on: ubuntu-latest
 
