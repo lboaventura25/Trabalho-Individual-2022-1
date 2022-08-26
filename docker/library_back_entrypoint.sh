@@ -10,4 +10,10 @@ echo '----------> RUNNING MIGRATIONS'
 python3 manage.py migrate
 
 echo '----------> RUNNING SERVER'
-python3 manage.py runserver 0.0.0.0:8000
+if $CI; then
+   echo '----------> STARTING TESTING'
+   python3 manage.py test
+else
+  echo '----------> STARTING SERVER'
+  python3 manage.py runserver 0.0.0.0:8000
+fi
