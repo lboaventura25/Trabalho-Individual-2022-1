@@ -20,7 +20,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "ci:build": "CI=true react-scripts build",
     "test": "react-scripts test",
+    "ci:test": "CI=true react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
