@@ -47,6 +47,6 @@ jobs:
 
       # Runs test of back with docker-compose
       - name: Run a `python3 manage.py test` inside library-back container
-        run: docker-compose up -d library-back
+        run: docker-compose up library-back
         env:
           CI: true
