@@ -50,3 +50,16 @@ jobs:
         run: docker-compose up library-back
         env:
           CI: true
+
+  lint-front:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Runs lint of front
+      - name: Run a `npx eslint src/**/*.js --no-error-on-unmatched-pattern` on front
+        run: |
+          cd library_front
+          yarn 
+          npx eslint src/** --no-error-on-unmatched-pattern
