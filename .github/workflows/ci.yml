@@ -46,5 +46,9 @@ jobs:
         run: docker-compose up -d db
 
       # Runs test of back with docker-compose
+      - name: Start library-back container in detached mode to test back
+        run: docker-compose up -d library-back
+
+      # Runs test of back with docker-compose
       - name: Run a `python3 manage.py test` inside library-back container
-        run: docker-compose run library-back python3 manage.py test
+        run: docker-compose exec library-back python3 manage.py test
