@@ -25,6 +25,8 @@ jobs:
       # Runs build of application with docker-compose
       - name: Run a detached mode build and up of project
         run: docker-compose up -d
+        env: 
+          PORT: 8000
 
   test-front:
     runs-on: ubuntu-latest
@@ -36,6 +38,8 @@ jobs:
       # Runs test of front with docker-compose
       - name: Run a `yarn ci:test` inside library-front container
         run: docker-compose run library-front yarn ci:test
+        env: 
+          PORT: 8000
 
   test-back:
     runs-on: ubuntu-latest
@@ -47,12 +51,15 @@ jobs:
       # Runs test of back with docker-compose
       - name: Start db container in detached mode to test back
         run: docker-compose up -d db
+        env: 
+          PORT: 8000
 
       # Runs test of back with docker-compose
       - name: Run a `python3 manage.py test` inside library-back container
         run: docker-compose up library-back
         env:
           CI: true
+          PORT: 8000
 
   lint-back:
     runs-on: ubuntu-latest
