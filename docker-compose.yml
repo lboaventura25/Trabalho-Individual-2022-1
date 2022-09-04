@@ -30,7 +30,7 @@ services:
     networks:
       - library-network
     ports:
-      - "8000:8000"
+      - ${PORT}:${PORT}
     volumes:
       - ./library_back:/library_back
       - pip_cache:/usr/local/lib/python3/site-packages
