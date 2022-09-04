@@ -1,0 +1,42 @@
+name: CD - Library
+on:
+  workflow_run:
+    workflows: [ CI - Library ]
+    types:
+      - completed
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Deploy Multiple Docker Images to Heroku Apps
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
+        with: 
+          email: ${{ secrets.HEROKU_EMAIL }}
+          api_key: ${{ secrets.HEROKU_API_KEY }}
+          docker_compose_file: './docker-compose.yml'
+          heroku_apps: '[{"imagename":"library-front","appname":"library-gces","apptype":"web"},{"imagename":"library-gces-back","appname":"library-back","apptype":"web"}]'
+
+
+      # - name: Install Heroku CLI
+      #   run: curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+      
+      # - name: Healthcheck to Heroku CLI
+      #   run: heroku --version
+
+      # - name: Login to Heroku
+      #   run: heroku login -i
+
+      # - name: Build docker image
+      #   run: docker build -f docker/Dockerfile_front -t library-front .
+      
+      # - name: Tag front docker image
+      #   run: docker tag library-front registry.heroku.com/library-gces/front
+      
+      # - name: Push Image
+      #   run: docker push registry.heroku.com/library-gces/front 
