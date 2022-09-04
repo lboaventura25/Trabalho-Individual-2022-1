@@ -15,5 +15,5 @@ if $CI; then
    python3 manage.py test
 else
   echo '----------> STARTING SERVER'
-  python3 manage.py runserver 0.0.0.0:8000
+  python3 manage.py runserver
 fi
