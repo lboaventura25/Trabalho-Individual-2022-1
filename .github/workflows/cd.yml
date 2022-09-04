@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
           email: ${{ secrets.HEROKU_EMAIL }}
           api_key: ${{ secrets.HEROKU_API_KEY }}
           docker_compose_file: './docker-compose.yml'
-          heroku_apps: '[{"imagename":"library-front","appname":"library-gces","apptype":"web"},{"imagename":"library-gces-back","appname":"library-back","apptype":"web"}]'
+          heroku_apps: '[{"imagename":"trabalho-individual-2022-1_library-front","appname":"library-gces","apptype":"web"},{"imagename":"trabalho-individual-2022-1_library-back","appname":"library-gces-back","apptype":"web"}]'
 
 
       # - name: Install Heroku CLI
