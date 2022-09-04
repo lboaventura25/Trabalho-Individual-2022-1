@@ -1,6 +1,10 @@
 # Trabalho-Individual-2022-1
 Trabalho individual de GCES de 2022/1
 
+[![CD - Library](https://github.com/lboaventura25/Trabalho-Individual-2022-1/actions/workflows/cd.yml/badge.svg)](https://github.com/lboaventura25/Trabalho-Individual-2022-1/actions/workflows/cd.yml)
+[![CI - Library](https://github.com/lboaventura25/Trabalho-Individual-2022-1/actions/workflows/ci.yml/badge.svg)](https://github.com/lboaventura25/Trabalho-Individual-2022-1/actions/workflows/ci.yml)
+
+
 Os conhecimentos de *Gestão de Configuração de Software* são fundamentais no ciclo de vida de um produto de software. As técnicas para a gestão vão desde o controle de versão, automação de build e de configuração de ambiente, testes automatizados, isolamento do ambiente até o deploy do sistema. Todo este ciclo nos dias de hoje são integrados em um pipeline de DevOps com as etapas de Integração Contínua (CI) e Deploy Contínuo (CD) implementadas e automatizada.
 
 Para exercitar estes conhecimentos, neste trabalho, você deverá aplicar os conceitos estudados ao longo da disciplina no produto de software contido neste repositório.
