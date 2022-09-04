@@ -15,5 +15,6 @@ if $CI; then
    python3 manage.py test
 else
   echo '----------> STARTING SERVER'
-  python3 manage.py runserver
+  # python3 manage.py runserver
+  gunicorn src.wsgi:application --bind 0.0.0.0:$PORT
 fi
