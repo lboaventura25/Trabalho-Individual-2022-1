@@ -1,6 +1,6 @@
 import unittest
-from library_back.books.models import Book
-from library_back.books.serializers import BookSerializer
+from books.models import Book
+from books.serializers import BookSerializer
 
 
 class BookTests(unittest.TestCase):

@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from library_back.books.models import Book
-from library_back.books.serializers import BookSerializer
+from books.models import Book
+from books.serializers import BookSerializer
 
 
 class BookViewSet(ModelViewSet):
