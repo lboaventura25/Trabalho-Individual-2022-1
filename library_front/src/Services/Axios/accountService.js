@@ -1,10 +1,11 @@
+import axios from 'axios';
 import { BASE_API } from './baseService';
 
 export async function registerAccount(
     firstName, lastName, email, username, password
   ) {
     try {
-      const response = await BASE_API.post('auth/register/', {
+      const response = await axios.post('auth/register/', {
         first_name: firstName,
         last_name: lastName,
         email: email,
@@ -25,7 +26,7 @@ export async function login(
   username, password
 ) {
   try {
-    const response = await BASE_API.post('auth/login/', {
+    const response = await axios.post('auth/login/', {
       username: username,
       password: password
     });
