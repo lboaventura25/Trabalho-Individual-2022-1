@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'https://library-gces.herokuapp.com']
 CORS_ALLOW_ALL_ORIGINS = True
 
 
