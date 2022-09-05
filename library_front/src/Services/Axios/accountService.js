@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_API } from './baseService';
+
 
 export async function registerAccount(
     firstName, lastName, email, username, password
