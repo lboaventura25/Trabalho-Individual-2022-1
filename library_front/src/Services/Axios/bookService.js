@@ -1,10 +1,11 @@
+import axios from 'axios';
 import { BASE_API } from './baseService';
 
 export async function createBook(
     title, author, release_year, user
   ) {
     try {
-      const response = await BASE_API.post('api/books/', {
+      const response = await axios.post('https://library-gces-back.herokuapp.com/api/books/', {
         title: title,
         author: author,
         release_year: release_year,
@@ -24,7 +25,7 @@ export async function createBook(
 
 export async function getBooks() {
     try {
-      const response = await BASE_API.get('api/books/');
+      const response = await BASE_API.get('https://library-gces-back.herokuapp.com/api/books/');
       return response;
     } catch (error) {
       if (error.response?.status === 500) {
@@ -37,7 +38,7 @@ export async function getBooks() {
 
 export async function rentBooks(bookId, renterId) {
   try {
-    const response = await BASE_API.post(`/api/books/${bookId}/rent/`, {
+    const response = await axios.post(`https://library-gces-back.herokuapp.com/api/books/${bookId}/rent/`, {
       renter: renterId,
     });
     return response;
@@ -52,7 +53,7 @@ export async function rentBooks(bookId, renterId) {
 
 export async function rentedUserBooks(renterId) {
   try {
-    const response = await BASE_API.get(`/api/books/?renter=${renterId}`);
+    const response = await axios.get(`https://library-gces-back.herokuapp.com/api/books/?renter=${renterId}`);
     return response;
   } catch (error) {
     if (error.response?.status === 500) {
