@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_API } from './baseService';
+// import { BASE_API } from './baseService';
 
 export async function createBook(
     title, author, release_year, user
@@ -25,7 +25,7 @@ export async function createBook(
 
 export async function getBooks() {
     try {
-      const response = await BASE_API.get('https://library-gces-back.herokuapp.com/api/books/');
+      const response = await axios.get('https://library-gces-back.herokuapp.com/api/books/');
       return response;
     } catch (error) {
       if (error.response?.status === 500) {
